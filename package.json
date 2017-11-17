@@ -1,6 +1,6 @@
 {
   "name": "simplerdf-fromjson",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Plugin for SimpleRDF to import JSON objects",
   "main": "index.js",
   "scripts": {
