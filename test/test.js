@@ -146,4 +146,21 @@ describe('simplerdf-fromjson', () => {
     assert.equal(instance.graph().match(instance.iri(), property, rdf.literal('value0')).length, 1)
     assert.equal(instance.graph().match(instance.iri(), property, rdf.literal('value1')).length, 1)
   })
+
+  it('should use static class to create the new instance', () => {
+    class CustomClass {
+    }
+
+    const SimpleExt = SimpleRDF.extend(CustomClass)
+
+    const instance = SimpleExt.fromJSON({
+      a: 'test'
+    }, {
+      a: 'http://example.org/a'
+    })
+
+    const plugins = instance._plugins.map(p => p.name).sort()
+
+    assert.deepEqual(plugins, ['CustomClass', 'SimpleFromJson', 'SimpleRDF'])
+  })
 })
